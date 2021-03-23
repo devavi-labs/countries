@@ -10,10 +10,34 @@ interface HomeProps {
 }
 
 const Home: NextPage<HomeProps> = function ({ countries }) {
+  const title = "Countries";
+  const description = "Basic informations about the countries";
+  const url = "https://countries-snowy.vercel.app";
+  const image = `${url}/countries.jpg`;
   return (
     <Screen>
       <Head>
-        <title>Countries</title>
+        <title>{title}</title>
+        <link
+          rel="icon"
+          href={`${url}/globe.png`}
+          type="image/png"
+          sizes="128x128"
+        />
+
+        {/** meta tags for open graph */}
+        <meta property="og:url" content={url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={image} />
+
+        {/** meta tags for twitter */}
+        <meta property="twitter:card" content="summary" />
+        <meta property="twitter:creator" content="devavi26" />
+        <meta property="twitter:title" content={title} />
+        <meta property="twitter:description" content={description} />
+        <meta property="twitter:image" content={image} />
+        <meta property="twitter:image:alt" content={title} />
       </Head>
       <Navbar title="Countries" />
       <section className="flex flex-wrap gap-4 p-4 pt-20">

@@ -22,12 +22,30 @@ interface CountryPageProps {
 
 const CountryPage: NextPage<CountryPageProps> = function ({ country }) {
   const title = `${country.name} - ${country.alpha2Code}`;
+  const description = `Basic informations about the country ${country.name}`;
+  const url = `https://countries-snowy.vercel.app/${country.alpha2Code}`;
+  const image = country.flag;
   const { ref, inView } = useInView({ threshold: 0.9 });
 
   return (
     <Screen>
       <Head>
         <title>{title}</title>
+        <link rel="icon" href={image} type="image/svg" />
+
+        {/** meta tags for open graph */}
+        <meta property="og:url" content={url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={image} />
+
+        {/** meta tags for twitter */}
+        <meta property="twitter:card" content="summary" />
+        <meta property="twitter:creator" content="devavi26" />
+        <meta property="twitter:title" content={title} />
+        <meta property="twitter:description" content={description} />
+        <meta property="twitter:image" content={image} />
+        <meta property="twitter:image:alt" content={title} />
       </Head>
       <Navbar title={title} img={!inView && country.flag} />
       <section className="p-4 pt-20">
