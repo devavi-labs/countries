@@ -1,6 +1,5 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 import Head from "next/head";
-import { useRouter } from "next/router";
 import { Navbar } from "../components/Navbar";
 import { Screen } from "../components/Screen";
 import { Country } from "../models/country/country";
@@ -11,8 +10,6 @@ interface HomeProps {
 }
 
 const Home: NextPage<HomeProps> = function ({ countries }) {
-  const router = useRouter();
-
   return (
     <Screen>
       <Head>
@@ -21,11 +18,11 @@ const Home: NextPage<HomeProps> = function ({ countries }) {
       <Navbar title="Countries" />
       <section className="flex flex-wrap gap-4 p-4 pt-20">
         {countries.map((country) => (
-          <button
+          <a
             key={country.alpha2Code}
             className="flex-1 min-w-full sm:min-w-max max-w-full p-4 bg-blue-200 rounded-xl flex gap-2 hover:bg-blue-300 hover:shadow-md focus:outline-none focus:bg-blue-300 focus:shadow-2xl transform hover:scale-105"
             title={country.name}
-            onClick={() => router.push(`/${country.alpha2Code}`)}
+            href={`/${country.alpha2Code}`}
           >
             <aside>
               <img src={country.flag} alt={country.name} className="w-10" />
@@ -49,7 +46,7 @@ const Home: NextPage<HomeProps> = function ({ countries }) {
                 <></>
               )}
             </article>
-          </button>
+          </a>
         ))}
       </section>
     </Screen>
