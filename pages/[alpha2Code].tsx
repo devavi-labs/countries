@@ -6,6 +6,7 @@ import {
   NextPage,
 } from "next";
 import Head from "next/head";
+import { useInView } from "react-intersection-observer";
 import { Card } from "../components/Card";
 import { CardTitle } from "../components/CardTitle";
 import { Navbar } from "../components/Navbar";
@@ -21,18 +22,21 @@ interface CountryPageProps {
 
 const CountryPage: NextPage<CountryPageProps> = function ({ country }) {
   const title = `${country.name} - ${country.alpha2Code}`;
+  const { ref, inView } = useInView({ threshold: 0.9 });
+
   return (
     <Screen>
       <Head>
         <title>{title}</title>
       </Head>
-      <Navbar title={title} />
+      <Navbar title={title} img={!inView && country.flag} />
       <section className="p-4 pt-20">
         <img
+          ref={ref}
           src={country.flag}
           alt={country.name}
           title={`National flag of ${country.name}`}
-          className="max-w-full sm:max-w-sm m-auto shadow-2xl transform hover:scale-105 cursor-pointer animate-fade-in"
+          className="max-w-full sm:max-w-sm m-auto shadow-2xl transform hover:scale-105 animate-fade-in"
         />
         <div className="flex justify-around items-stretch flex-wrap gap-4 px-2 py-8 sm:px-8">
           {country.nativeName && (
