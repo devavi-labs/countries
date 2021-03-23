@@ -32,9 +32,9 @@ const CountryPage: NextPage<CountryPageProps> = function ({ country }) {
           src={country.flag}
           alt={country.name}
           title={`National flag of ${country.name}`}
-          className="max-w-xs m-auto shadow-2xl transform hover:scale-105 cursor-pointer"
+          className="max-w-full sm:max-w-sm m-auto shadow-2xl transform hover:scale-105 cursor-pointer"
         />
-        <div className="flex justify-around items-stretch flex-wrap gap-4 p-8">
+        <div className="flex justify-around items-stretch flex-wrap gap-4 px-2 py-8 sm:px-8">
           {country.nativeName && (
             <Card title={`Native name of ${country.name}`}>
               <CardTitle title="Native Name" />

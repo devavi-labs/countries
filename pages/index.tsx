@@ -19,11 +19,11 @@ const Home: NextPage<HomeProps> = function ({ countries }) {
         <title>Countries</title>
       </Head>
       <Navbar title="Countries" />
-      <section className="flex flex-wrap gap-4 p-4">
+      <section className="flex flex-wrap gap-4 p-4 pt-20">
         {countries.map((country) => (
           <button
             key={country.alpha2Code}
-            className="flex-1 min-w-max p-4 bg-blue-200 rounded-xl flex gap-2 hover:bg-blue-300 hover:shadow-md focus:outline-none focus:bg-blue-300 focus:shadow-2xl transform hover:scale-105"
+            className="flex-1 min-w-full sm:min-w-max max-w-full p-4 bg-blue-200 rounded-xl flex gap-2 hover:bg-blue-300 hover:shadow-md focus:outline-none focus:bg-blue-300 focus:shadow-2xl transform hover:scale-105"
             title={country.name}
             onClick={() => router.push(`/${country.alpha2Code}`)}
           >
